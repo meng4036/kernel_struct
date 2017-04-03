@@ -33,7 +33,7 @@ struct person * new_person(int id, char *name)
 
 int main()
 {
-	struct person *pp, *first, *last;
+	struct person *pp, *first, *last, *tmp;
 
 	pp = new_person(1, "jerry");
 	list_add_tail(&pp->list, &head);
@@ -55,4 +55,9 @@ int main()
 	fprintf(stdout, "ID: %d,\t Name: %s\n", first->id, first->name);
 	fprintf(stdout, "ID: %d,\t Name: %s\n", last->id, last->name);
 
+	/* clean environment */
+	list_for_each_entry_safe(pp, tmp, &head, list) {
+		list_del(&pp->list);	
+		free(pp);
+	}
 }

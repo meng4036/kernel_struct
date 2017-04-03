@@ -2,10 +2,10 @@
 OBJS = mysample.o
 
 %.o: %.c
-	gcc -c $<
+	gcc -c -o $@ $<
 
 sample:$(OBJS)
-	gcc -o $@ $(OBJS)
+	gcc -o $@ $^
 
 clean:
-	rm *.o *.gch sample
+	rm -f *.o *.gch sample

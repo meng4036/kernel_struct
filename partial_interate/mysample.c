@@ -31,7 +31,7 @@ struct person * new_person(int id, char *name)
 
 int main()
 {
-	struct person * p, *pp;
+	struct person * p, *pp, *tmp;
 	struct list_head *plist;
 	
 	p = new_person(1, "jerry");
@@ -73,4 +73,10 @@ int main()
 	list_for_each_entry_from(pp,  &head, list) {
 		fprintf(stdout, "ID: %d,\t Name: %s\n", pp->id, pp->name);
 	}
+
+    /* clean environment */
+    list_for_each_entry_safe(pp, tmp, &head, list) {
+        list_del(&pp->list);   
+        free(pp);
+    }
 }

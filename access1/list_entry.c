@@ -42,4 +42,6 @@ int main()
 	pp = list_entry(plist, struct person, list);
 	fprintf(stdout, "ID: %d, \t Name: %s\n", pp->id, pp->name);
 
+	if (pp)
+		free(pp);
 }
